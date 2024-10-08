@@ -1,0 +1,267 @@
+@import "variables";
+@import "mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(27, 27, 27);
+  //font-size: 0;
+}
+
+ul, li, a {
+  text-decoration: none;
+  list-style: none;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../../fonts/gilroy-regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../../fonts/gilroy-medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../../fonts/gilroy-bold.ttf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: Cambria;
+  src: url("../../fonts/cambria-bold.ttf");
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: transparent;
+  padding: 41px 0;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  .header__container {
+    .flx-btw;
+    align-items: center;
+
+    .header__nav {
+      margin-left: 9px;
+
+      .header__menu {
+        .flx-btw;
+        align-items: center;
+        gap: 40px;
+
+        .header__menu-item {
+          .gilroy-mix(16px, 400, @white);
+          padding-bottom: 10px;
+          transition: all .2s ease-in-out;
+
+
+          &:hover {
+            border-bottom: 1px solid @red;
+            text-shadow: 0 0 4px @white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo__link {
+  align-items: center;
+  display: flex;
+  .logo__link-text {
+    .gilroy-mix(16px, 500, @red);
+  }
+}
+
+
+.call {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  .call__number {
+    .gilroy-mix(16px, bold, @white);
+  }
+  .call__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 21px 17px 21px;
+    gap: 14px;
+    border: 2px solid @red;
+    .gilroy-mix(16px, bold, @red);
+    background-color: transparent;
+    border-radius: 5px;
+    width: 207px;
+    height: 57px;
+  }
+}
+
+.barb_club {
+  position: relative;
+  background: rgb(27, 27, 27) url("../../images/back_first.png") no-repeat;
+  background-blend-mode: overlay;
+  padding: 176px 0 63px 0;
+
+  .barb__back {
+    position: absolute;
+    .cambria-mix(300px, rgba(39, 39, 39, 0.302));
+
+    &.first {
+      left: 160px;
+      top: 624px;
+    }
+    &.second {
+      right: 59px;
+      top: 295px;
+    }
+  }
+
+  .barb__container {
+    .flx-btw;
+
+    .barb__info {
+      padding-top: 65px;
+      //max-width: 580px;
+
+      .barb__title {
+        .cambria-mix(50px, @white);
+        line-height: 1.14;
+        margin-bottom: 70px;
+        width: 570px;
+        text-shadow: 0 0 5px @white;
+        & span {
+          text-shadow: none;
+        }
+      }
+
+      .barb__text {
+        .gilroy-mix(20px, 400, @white);
+        line-height: 1.5;
+        max-width: 460px;
+        margin-bottom: 66px;
+      }
+      .barb__action {
+        .barb__button {
+          padding: 25px 76px 27px 76px;
+        }
+      }
+    }
+
+    .barb__image {
+      position: relative;
+      right: 68px;
+      top: 0;
+      .barb__img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+  .red {
+    color: @red;
+  }
+}
+
+.button {
+  .gilroy-mix(18px, bold, @white);
+  background-image: -webkit-linear-gradient( 90deg, rgb(90,4,4) 0%, rgb(188,18,18) 100%);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+
+  &:hover {
+    box-shadow: 1px 1px 15px 0 @red;
+  }
+}
+
+.about {
+  background: rgb(27, 27, 27) url("../../images/back_first.png") no-repeat;
+  //background-image: url("../../images/back_second.png");
+  //background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  padding: 94px 0 128px 0;
+
+  .about__container {
+    display: grid;
+    //grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
+    //grid-template-rows: auto auto; /* Две строки */
+    gap: 77px;
+
+    .about__info {
+      display: flex;
+      flex-direction: column;
+
+      .about__title {
+        .cambria-mix(40px, @white);
+        margin-bottom: 50px;
+        text-shadow: 0 0 5px @white;
+      }
+
+      .about__text {
+        .gilroy-mix(15px, 400, @white);
+        line-height: 1.467;
+        text-align: left;
+        &.part1 {
+          margin-bottom: 31px;
+        }
+      }
+    }
+
+    .about__image {
+      position: relative;
+      .about__club {
+        position: relative;
+        z-index: 1;
+      }
+      .about__blade{
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(40%, -15%);
+      }
+    }
+
+    .about__items {
+      grid-column: 1 / span 2; /* Занимает обе колонки */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .gilroy-mix(16px, 400, @white);
+      line-height: 1.438;
+      .about__item {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        .about__pic {
+          max-height: fit-content;
+        }
+        .about__disc {
+
+        }
+      }
+
+      .advantage__item:hover .adv-item__num {
+        color: @lines;
+        background-color: @body-first;
+      }
+    }
+  }
+}

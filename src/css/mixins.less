@@ -1,0 +1,48 @@
+@import "variables";
+
+.cambria-mix(@size, @color) {
+  font-size: @size;
+  font-family: @font-cambria;
+  font-weight: bold;
+  color: @color;
+}
+
+.gilroy-mix(@size, @weight, @color) {
+  font-size: @size;
+  font-family: @font-gilroy;
+  font-weight: @weight;
+  color: @color;
+}
+
+.flx-btw {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flx-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.abs-cnt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.round-mix(@fscl, @tscl) {
+  from {
+    transform: translate(-50%, -50%) scale(@fscl);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(@tscl);
+    opacity: 0;
+  }
+}
+
+.anim-mix(@anm, @tdl) {
+  animation: rounding @anm linear infinite;
+  animation-delay: @tdl;
+}
