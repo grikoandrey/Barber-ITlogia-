@@ -1,0 +1,11 @@
+{
+  "name": "barber_club_10",
+  "version": "1.0.0",
+  "description": "project barber club for mod_6",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrey Griko",
+  "license": "ISC"
+}

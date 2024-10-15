@@ -1,22 +1,33 @@
 @import "variables";
 @import "mixins";
-
+//----------------General styles----------
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgb(27, 27, 27);
-  //font-size: 0;
+html {
+  scroll-behavior: smooth;
 }
+
+body {
+  background-color: #000000;
+  font-size: 0;
+  position: relative;
+}
+
 
 ul, li, a {
   text-decoration: none;
   list-style: none;
 }
 
+select {
+  appearance: none;
+}
+
+//----------------Fonts for pages----------
 @font-face {
   font-family: Gilroy;
   src: url("../../fonts/gilroy-regular.ttf");
@@ -34,6 +45,7 @@ ul, li, a {
   src: url("../../fonts/gilroy-bold.ttf");
   font-weight: bold;
 }
+
 @font-face {
   font-family: Cambria;
   src: url("../../fonts/cambria-bold.ttf");
@@ -45,14 +57,15 @@ ul, li, a {
   margin: 0 auto;
 }
 
+//----------------Styles for Header----------
 .header {
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 41px 0;
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
 
   .header__container {
     .flx-btw;
@@ -71,7 +84,6 @@ ul, li, a {
           padding-bottom: 10px;
           transition: all .2s ease-in-out;
 
-
           &:hover {
             border-bottom: 1px solid @red;
             text-shadow: 0 0 4px @white;
@@ -85,6 +97,7 @@ ul, li, a {
 .logo__link {
   align-items: center;
   display: flex;
+
   .logo__link-text {
     .gilroy-mix(16px, 500, @red);
   }
@@ -95,9 +108,16 @@ ul, li, a {
   display: flex;
   align-items: center;
   gap: 20px;
+
   .call__number {
     .gilroy-mix(16px, bold, @white);
+
+    &:hover {
+      color: rgb(24, 1, 1);
+      text-shadow: 0 0 5px @red;
+    }
   }
+
   .call__btn {
     display: flex;
     align-items: center;
@@ -110,14 +130,29 @@ ul, li, a {
     border-radius: 5px;
     width: 207px;
     height: 57px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 1px 1px 15px 0 @red;
+      background-image: -webkit-linear-gradient(90deg, rgb(61, 8, 8) 0%, rgb(93, 8, 8) 100%);
+    }
   }
 }
 
+//----------------Styles for Barb club section----------
 .barb_club {
   position: relative;
-  background: rgb(27, 27, 27) url("../../images/back_first.png") no-repeat;
-  background-blend-mode: overlay;
-  padding: 176px 0 63px 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_first.png");
+    background-repeat: no-repeat;
+    opacity: 0.15;
+  }
 
   .barb__back {
     position: absolute;
@@ -127,6 +162,7 @@ ul, li, a {
       left: 160px;
       top: 624px;
     }
+
     &.second {
       right: 59px;
       top: 295px;
@@ -134,6 +170,9 @@ ul, li, a {
   }
 
   .barb__container {
+    position: relative;
+    z-index: 1;
+    padding: 176px 0 63px 0;
     .flx-btw;
 
     .barb__info {
@@ -146,6 +185,7 @@ ul, li, a {
         margin-bottom: 70px;
         width: 570px;
         text-shadow: 0 0 5px @white;
+
         & span {
           text-shadow: none;
         }
@@ -157,6 +197,7 @@ ul, li, a {
         max-width: 460px;
         margin-bottom: 66px;
       }
+
       .barb__action {
         .barb__button {
           padding: 25px 76px 27px 76px;
@@ -168,12 +209,14 @@ ul, li, a {
       position: relative;
       right: 68px;
       top: 0;
+
       .barb__img {
         width: 100%;
         height: auto;
       }
     }
   }
+
   .red {
     color: @red;
   }
@@ -181,7 +224,7 @@ ul, li, a {
 
 .button {
   .gilroy-mix(18px, bold, @white);
-  background-image: -webkit-linear-gradient( 90deg, rgb(90,4,4) 0%, rgb(188,18,18) 100%);
+  background-image: -webkit-linear-gradient(90deg, rgb(90, 4, 4) 0%, rgb(188, 18, 18) 100%);
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -192,17 +235,25 @@ ul, li, a {
   }
 }
 
+//----------------Styles for About section----------
 .about {
-  background: rgb(27, 27, 27) url("../../images/back_first.png") no-repeat;
-  //background-image: url("../../images/back_second.png");
-  //background-repeat: no-repeat;
-  background-blend-mode: overlay;
-  padding: 94px 0 128px 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_second.png");
+    background-repeat: no-repeat;
+    opacity: 0.15;
+  }
 
   .about__container {
+    position: relative;
+    z-index: 1;
     display: grid;
-    //grid-template-columns: 1fr 1fr; /* Две колонки одинаковой ширины */
-    //grid-template-rows: auto auto; /* Две строки */
+    padding: 94px 0 113px 0;
     gap: 77px;
 
     .about__info {
@@ -219,6 +270,7 @@ ul, li, a {
         .gilroy-mix(15px, 400, @white);
         line-height: 1.467;
         text-align: left;
+
         &.part1 {
           margin-bottom: 31px;
         }
@@ -227,11 +279,13 @@ ul, li, a {
 
     .about__image {
       position: relative;
+
       .about__club {
         position: relative;
         z-index: 1;
       }
-      .about__blade{
+
+      .about__blade {
         position: absolute;
         top: 0;
         right: 0;
@@ -246,13 +300,16 @@ ul, li, a {
       justify-content: space-between;
       .gilroy-mix(16px, 400, @white);
       line-height: 1.438;
+
       .about__item {
         display: flex;
         gap: 15px;
         align-items: center;
+
         .about__pic {
           max-height: fit-content;
         }
+
         .about__disc {
 
         }
@@ -261,6 +318,920 @@ ul, li, a {
       .advantage__item:hover .adv-item__num {
         color: @lines;
         background-color: @body-first;
+      }
+    }
+  }
+}
+
+//----------------Styles for Discount section----------
+.discount {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_fifth.png");
+    background-repeat: no-repeat;
+    opacity: 0.15;
+  }
+
+  .discount__container {
+    position: relative;
+    z-index: 1;
+    .flx-btw;
+    padding: 100px 0 86px 0;
+    //background-color: rgb(27, 27, 27);
+    //position: relative;
+
+    .discount__info {
+      //position: relative;
+      z-index: 1;
+      padding-top: 150px;
+      text-align: center;
+      min-width: 600px;
+
+      .discount__title {
+        .cambria-mix(40px, @white);
+        margin-bottom: 40px;
+        text-shadow: 0 0 5px @white;
+      }
+
+      .discount__inv {
+        display: flex;
+        gap: 13px;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .discount__num {
+        .cambria-mix(70px, @red);
+      }
+
+      .discount__text {
+        .gilroy-mix(18px, 400, @white);
+        line-height: 1.278;
+        text-align: start;
+      }
+
+      .discount__action {
+        .discount__button {
+          padding: 24px 54px;
+        }
+      }
+    }
+
+    .discount__image {
+      position: relative;
+    }
+  }
+
+  .red {
+    color: @red;
+  }
+}
+
+//----------------Styles for Instagram section----------
+.instagram {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_sixth.png");
+    background-repeat: no-repeat;
+    opacity: 0.15;
+  }
+
+
+  .inst__container {
+    position: relative;
+    z-index: 1;
+    padding: 92px 0 117px 0;
+
+    .inst__info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 70px;
+
+      .inst__title {
+        .cambria-mix(40px, @white);
+        text-shadow: 0 0 5px @white;
+      }
+
+      .inst__action {
+        display: flex;
+        align-items: center;
+        gap: 27px;
+
+        .inst__logo {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          .gilroy-mix(20px, 500, @red);
+        }
+
+        .inst__button {
+          padding: 24px 42px;
+        }
+      }
+    }
+  }
+}
+
+//----------------Styles for Sliders section----------
+.slider, .glider {
+  min-width: 0;
+  position: relative;
+  padding: 0 50px;
+
+  .slider__item {
+    text-align: center;
+    transition: transform .6s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .slick-list {
+    overflow: hidden;
+    padding-bottom: 30px;
+  }
+
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }
+
+  .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    font-size: 0;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(73, 73, 73);
+
+    &:hover {
+      box-shadow: 1px 1px 15px 0 @red;
+    }
+
+    &.slick-prev {
+      left: 0;
+      background-image: url('../../images/right-arrow.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      &:hover {
+        background-image: url('../../images/left-arrow-white.png'), linear-gradient(90deg, rgb(90, 4, 4) 0%, rgb(188, 18, 18) 100%);
+      }
+    }
+
+    &.slick-next {
+      right: 0;
+      background-image: url('../../images/left-arrow.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      &:hover {
+        background-image: url('../../images/right-arrow-white.png'), linear-gradient(90deg, rgb(90, 4, 4) 0%, rgb(188, 18, 18) 100%);
+      }
+    }
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & li {
+      list-style: none;
+      margin: 0 6px;
+
+      &.slick-active {
+        & button {
+          background-color: rgb(188, 18, 18);
+        }
+      }
+    }
+
+    & button {
+      font-size: 0;
+      border: 1px solid rgb(188, 18, 18);
+      border-radius: 50%;
+      width: 6px;
+      height: 6px;
+      background-color: transparent;
+    }
+  }
+}
+
+//----------------Styles for Masters section----------
+.masters {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_fourth.png");
+    background-repeat: no-repeat;
+    opacity: 0.15;
+  }
+
+  .masters__container {
+    position: relative;
+    z-index: 1;
+    padding: 73px 0;
+
+    .masters__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 33px;
+
+      .masters__title {
+        .cambria-mix(40px, @white);
+        text-shadow: 0 0 5px @white;
+      }
+
+      .masters__text {
+        .gilroy-mix(15px, 400, @white);
+        line-height: 1.333;
+        text-align: center;
+        //max-width: 650px;
+      }
+    }
+  }
+
+  .glider {
+    .slider__item {
+      position: relative;
+
+      .slider__item-name {
+        position: absolute;
+        top: 35px;
+        left: 60px;
+        .gilroy-mix(18px, 500, @white);
+      }
+
+      .slider__item-link {
+        position: absolute;
+        bottom: 25px;
+        right: 75px;
+        .gilroy-mix(20px, bold, @red);
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+    }
+  }
+}
+
+//----------------Styles for Masters section----------
+.services {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_third.png");
+    background-repeat: no-repeat;
+    opacity: 0.15;
+  }
+
+  .services__container {
+    .flx-btw;
+    padding: 85px 0;
+    position: relative;
+    z-index: 1;
+
+    .services__info {
+      text-align: center;
+      min-width: 575px;
+
+      .services__title {
+        .cambria-mix(40px, @white);
+        text-align: start;
+        margin-bottom: 60px;
+        text-shadow: 0 0 5px @white;
+      }
+
+      .services__table {
+        margin-bottom: 40px;
+
+        .services__price {
+          display: grid;
+          grid-template-columns: 1.8fr 3.1fr 1fr;
+          .gilroy-mix(16px, 500, @white);
+          line-height: 1;
+          margin-top: 73px;
+          text-align: left;
+
+          .services__col {
+            display: flex;
+            flex-direction: column;
+            gap: 49px;
+
+            &.name {
+              padding-right: 18px;
+            }
+
+            &.disc {
+              .gilroy-mix(14px, 400, @white);
+              line-height: 1.1;
+              border-left: 1px solid rgb(56, 56, 56);
+              border-right: 1px solid rgb(56, 56, 56);
+              padding-left: 37px;
+              padding-right: 28px;
+
+              :last-child {
+                margin-top: -13px;
+              }
+            }
+
+            &.sum {
+              padding-left: 25px;
+            }
+          }
+        }
+      }
+
+      .services__action {
+        .services__button {
+          padding: 25px 76px;
+        }
+      }
+    }
+
+    .services__image {
+      padding-top: 128px;
+    }
+  }
+}
+
+.header__menu {
+  .flx-btw;
+  align-items: center;
+  gap: 40px;
+
+  .header__menu-item {
+    .gilroy-mix(16px, 400, @white);
+    padding-bottom: 10px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      border-bottom: 1px solid @red;
+      text-shadow: 0 0 4px @white;
+    }
+  }
+}
+
+.contacts {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/back_seventh.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.15;
+  }
+
+  .contacts__container {
+    position: relative;
+    z-index: 1;
+    padding: 63px 0 101px 0;
+    line-height: 1;
+
+    .contacts__title {
+      .cambria-mix(40px, @white);
+      text-shadow: 0 0 5px @white;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .contacts__bloc {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .contacts__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 30px 70px;
+        background-color: rgb(18, 18, 18);
+
+        .title {
+          .gilroy-mix(15px, 400, rgb(212, 208, 204));
+        }
+
+        .name {
+          .gilroy-mix(16px, bold, @white);
+        }
+
+        .logo {
+        }
+
+        .contacts__address {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          text-align: center;
+        }
+
+        .contacts__time {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          text-align: center;
+          margin-top: -10px;
+        }
+
+        .contacts__social {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+
+          img {
+            transition: opacity 0.4s ease;
+
+            &:hover {
+              opacity: 0.1;
+            }
+          }
+        }
+
+        .contacts__mail {
+          .gilroy-mix(18px, bold, @white);
+
+          &:hover {
+            color: rgb(24, 1, 1);
+            text-shadow: 0 0 5px @red;
+          }
+        }
+
+        .call {
+          flex-direction: column;
+        }
+      }
+
+      .contacts__map {
+        background-color: rgb(0, 0, 0);
+        width: 840px;
+        .gilroy-mix(18px, bold, @white);
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: transparent;
+  padding: 45px 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  .gilroy-mix(12px, 400, rgb(102, 101, 100));
+  text-align: center;
+}
+
+.popup__call {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(13, 13, 13, 0.8);
+  z-index: 5;
+  //display: none;
+  opacity: 0;
+  visibility: hidden;
+  //overflow-y: auto;
+  //overflow-x: hidden;
+  transition: all .8s ease 0s;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.open .popup__body .popup__content {
+    //transform: translate(0px, 0px);
+    transform: perspective(600px) translate(0px, 0px) rotateX(0deg);
+    opacity: 1;
+  }
+
+  //.popup__area {
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  width: 100%;
+  //  height: 100%;
+  //}
+
+  .popup__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 150px;
+
+
+    .popup__content {
+      //max-width: 500px;
+      display: flex;
+      //padding: 0 110px;
+      transition: all .8s ease 0s;
+      opacity: 0;
+      //transform: translate(0px, -100%);
+      transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+
+      .popup__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-31%, -45%);
+        z-index: 1;
+      }
+
+      .popup__field {
+        //max-width: 395px;
+        //position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.85) url("../../images/popup-call/back-concrete.png");
+        background-blend-mode: overlay;
+        box-shadow: 0 0 20px @white;
+        padding: 70px 60px;
+        text-align: center;
+
+        .exit {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+        }
+
+        .popup__title {
+          .cambria-mix(30px, @white);
+          text-shadow: 0 0 5px @white;
+          margin-bottom: 25px;
+        }
+
+        .popup__text {
+          .gilroy-mix(15px, 400, @white);
+          margin-bottom: 30px;
+        }
+
+        .popup__form {
+          display: flex;
+          flex-wrap: wrap;
+          //flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 28px;
+          max-width: 271px;
+          //margin: 0 auto;
+
+          .popup__form-item {
+            display: grid;
+            position: relative;
+
+            label {
+              display: none;
+            }
+
+            .error-input {
+              position: absolute;
+              bottom: -17px;
+              left: 0;
+            }
+          }
+
+          .call__input {
+            border-width: 1px;
+            border-color: rgb(255, 255, 255);
+            border-style: solid;
+            border-radius: 5px;
+            background-color: rgb(51, 50, 50);
+            padding: 18px 23px;
+            min-width: 250px;
+            height: 65px;
+            .gilroy-mix(15px, 400, @white);
+
+            &::placeholder {
+              .gilroy-mix(15px, 400, @white);
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: 0 0 15px @white;
+            }
+
+            &.error {
+              box-shadow: 1px 1px 15px 0 @red;
+              border: 2px solid @red;
+            }
+          }
+
+          .popup__name {
+            //margin-bottom: 27px;
+          }
+
+          .popup__phone {
+            //margin-bottom: 30px;
+          }
+
+          .popup__button {
+            padding: 25px;
+            min-width: 250px;
+            max-height: 65px;
+          }
+
+          .error-input {
+            .gilroy-mix(15px, 400, @red);
+            margin-top: -20px;
+            //margin-bottom: 20px;
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------
+.popup__order {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(13, 13, 13, 0.8);
+  z-index: 5;
+  //display: none;
+  opacity: 0;
+  visibility: hidden;
+  //overflow-y: auto;
+  //overflow-x: hidden;
+  transition: all .8s ease 0s;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.open .order__body .order__content {
+    transform: perspective(600px) translate(0px, 0px) rotateX(0deg);
+    opacity: 1;
+  }
+
+  .order__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 150px;
+
+    .order__content {
+      //max-width: 500px;
+      display: flex;
+      //padding: 0 110px;
+      transition: all .8s ease 0s;
+      position: relative;
+      opacity: 0;
+      transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+
+      .popup__man {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-30%, -19%);
+        z-index: 1;
+      }
+
+      .blades {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-22%, -56%);
+        z-index: 1;
+      }
+
+      .order__field {
+        //max-width: 395px;
+        //position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.85) url("../../images/popup-order/back_popap.png");
+        background-blend-mode: overlay;
+        box-shadow: 0 0 20px @white;
+        padding: 55px 76px 38px 369px;
+        text-align: center;
+
+        .exit {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+        }
+
+        .order__title {
+          .cambria-mix(30px, @white);
+          text-shadow: 0 0 5px @white;
+          margin-bottom: 20px;
+        }
+
+        .order__text {
+          .gilroy-mix(15px, 400, @white);
+          margin-bottom: 28px;
+        }
+
+        .order__form {
+          display: flex;
+          flex-wrap: wrap;
+          //flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          column-gap: 30px;
+          row-gap: 25px;
+          max-width: 530px;
+          //margin: 0 auto;
+
+          .order__form-item {
+            display: grid;
+            position: relative;
+
+            label {
+              display: none;
+            }
+
+            .error-input {
+              position: absolute;
+              bottom: -17px;
+              left: 0;
+            }
+          }
+
+          select {
+            background-image: url("../../images/right-arrow-white.png");
+            background-repeat: no-repeat;
+            background-size: 10px;
+            background-position: 212px;
+          }
+
+          select:hover {
+            cursor: pointer;
+          }
+
+          .call__input {
+            border-width: 1px;
+            border-color: rgb(255, 255, 255);
+            border-style: solid;
+            border-radius: 5px;
+            background-color: rgb(51, 50, 50);
+            padding: 18px 23px;
+            min-width: 250px;
+            height: 65px;
+            .gilroy-mix(15px, 400, @white);
+
+            &::placeholder {
+              .gilroy-mix(15px, 400, @white);
+            }
+
+            &:focus {
+              outline: none;
+              box-shadow: 0 0 15px @white;
+            }
+
+            &.error {
+              box-shadow: 1px 1px 15px 0 @red;
+              border: 2px solid @red;
+            }
+          }
+
+          .popup__name {
+            //margin-bottom: 27px;
+          }
+
+          .popup__phone {
+            //margin-bottom: 30px;
+          }
+
+          .order__button {
+            padding: 25px;
+            min-width: 250px;
+            max-height: 65px;
+          }
+
+          .error-input {
+            .gilroy-mix(15px, 400, @red);
+            margin-top: -20px;
+            //margin-bottom: 20px;
+            display: none;
+          }
+        }
+      }
+
+      .success-form-style {
+        min-width: 975px;
+        min-height: 530px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+.popup__discount {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(13, 13, 13, 0.8);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .8s ease 0s;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.open .discount__body .discount__content {
+    transform: perspective(600px) translate(0px, 0px) rotateX(0deg);
+    opacity: 1;
+  }
+
+  .discount__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 150px;
+
+
+    .discount__content {
+      display: flex;
+      transition: all .8s ease 0s;
+      opacity: 0;
+      transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+
+      .discount__image {
+        //position: absolute;
+        //top: 0;
+        //left: 0;
+        //transform: translate(-31%, -45%);
+        //z-index: 1;
+      }
+
+      .discount__field {
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.85) url("../../images/popup-call/back-concrete.png");
+        background-blend-mode: overlay;
+        box-shadow: 0 0 20px @red;
+        padding: 70px 60px;
+        text-align: center;
+
+        .exit {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+        }
+
+        .discount__title {
+          .cambria-mix(30px, @red);
+          text-shadow: 0 0 25px @red;
+          margin-bottom: 25px;
+        }
       }
     }
   }
