@@ -12,16 +12,16 @@ $(document).ready(function () {
         slidesToShow: 3,
         slidesToScroll: 1,
         speed: 1000,
-        // easing: 'ease',
-        // infinite: false,
         initialSlide: 1,
-        // autoplay: true,
-        autoplaySpeed: 2000,
-        // draggable: false,
-        // swipe: false,
         swipeSpeed: 500,
-        // centerMode: true,
-        // variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 486, // При ширине экрана меньше 420px
+                settings: {
+                    slidesToShow: 2, // Отображать 1 слайд
+                }
+            }
+        ]
     });
     // настройки для слайдера в блоке Masters
     $('.glider').slick({
@@ -30,16 +30,16 @@ $(document).ready(function () {
         slidesToShow: 2,
         slidesToScroll: 1,
         speed: 500,
-        // easing: 'ease',
-        // infinite: false,
         initialSlide: 0,
-        // autoplay: true,
-        autoplaySpeed: 1000,
-        // draggable: false,
-        // swipe: false,
         swipeSpeed: 500,
-        // centerMode: true,
-        // variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 486,
+                settings: {
+                    slidesToShow: 1,
+                }
+            }
+        ]
     });
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -114,7 +114,6 @@ $(document).ready(function () {
 
 // Функция для сброса формы
     function resetForm() {
-        // document.querySelector('.popup__form').reset();  // Сброс всех полей формы
         $('.error-input').hide();           // Скрываем ошибки
         name.removeClass('error');
         phone.removeClass('error');
@@ -180,8 +179,12 @@ $(document).ready(function () {
     $('.order__btn').on('click', function (e) {
         e.preventDefault();
         $('#popup__order').addClass('open');
-        // restorePopupContent();
         resetOrderForm();
+        let masterName = $(this).closest('.slider__item').find('.slider__item-name').text();
+
+        $('#order__master option').filter(function() {
+            return $(this).text().trim() === masterName;
+        }).prop('selected', true);
     });
 
     o_name.on('input', function () {
@@ -190,6 +193,26 @@ $(document).ready(function () {
     });
 
     o_phone.on('input', function () {
+        $(this).removeClass('error');
+        $(this).next('.error-input').hide();
+    });
+
+    o_service.on('input', function () {
+        $(this).removeClass('error');
+        $(this).next('.error-input').hide();
+    });
+
+    o_master.on('input', function () {
+        $(this).removeClass('error');
+        $(this).next('.error-input').hide();
+    });
+
+    o_date.on('input', function () {
+        $(this).removeClass('error');
+        $(this).next('.error-input').hide();
+    });
+
+    o_time.on('input', function () {
         $(this).removeClass('error');
         $(this).next('.error-input').hide();
     });
@@ -264,8 +287,9 @@ $(document).ready(function () {
     function displaySuccessOrderMessage() {
         $('.order__form, .order__button').hide();  // Скрываем форму и кнопку отправки
         $('.order__field').addClass('success-form-style');
-        $('.order__title').text('Спасибо за ваш заказ!');  // Изменяем текст
-        $('.order__text').text('Мы перезвоним вам для уточнения данных в течении 5 минут.');  // Изменяем текст
+        $('.popup__man').addClass('success-popup__man');
+        $('.order__title').addClass('success-order__title').text('Спасибо за ваш заказ!');  // Изменяем текст
+        $('.order__text').addClass('success-order__text').text('Мы перезвоним вам для уточнения данных в течении 5 минут.');  // Изменяем текст
     }
 
 // Функция для отображения сообщения об ошибке
@@ -323,25 +347,39 @@ $(document).ready(function () {
     let servicesData = {
         haircut: {
             names: ['Стрижка мужская', 'Стрижка удлиненная', 'Стрижка машинкой', 'Стрижка детская', 'Стрижка бороды'],
+            shortNames: ['Мужская', 'Удлиненная', 'Машинкой', 'Детская', 'Бороды'],
             descriptions: ['Подбор стрижки, 2 мытья, укладка', 'Подбор стрижки, 2 мытья, укладка', 'Без ножниц', 'От 4 до 14 лет включительно, не удлиненная', 'С распариванием и окантовкой бритвой шаветт'],
-            prices: ['1400 руб.', '2100 руб.', '950 руб.', '1100 руб.', '950 руб.']
+            shortDescriptions: ['Подбор, мытье, укладка', 'Подбор, мытье, укладка', 'Без ножниц', 'От 4 до 14 лет', 'Распар и окант'],
+            prices: ['1400 руб.', '2100 руб.', '950 руб.', '1100 руб.', '950 руб.'],
+            shortPrices: ['1400 р.', '2100 р.', '950 р.', '1100 р.', '950 р.'],
         },
         shaving: {
-            names: ['Бритье броды', 'Бритье и укладка', 'Бритье подмышек', 'Интимное бритье', 'Побреем и ноги'],
+            names: ['Бритье бороды', 'Бритье и укладка', 'Бритье подмышек', 'Интимное бритье', 'Побреем и ноги'],
+            shortNames: ['Борода', 'И укладка', 'Подмышек', 'Интимное', 'И ноги'],
             descriptions: ['Подбор бороды, 2 мытья, стрижка', 'Подбор бороды, 2 мытья, укладка', 'Зажигалкой', 'От 25 до 45 лет включительно, подбор рисунка', 'С распариванием и выдергиванием лейкопластырем'],
-            prices: ['1100 руб.', '1900 руб.', '150 руб.', '3500 руб.', '2200 руб.']
+            shortDescriptions: ['Подбор, мытье', 'Подбор, мытье', 'Зажигалкой', 'От 25 до 45, подбор', 'Выдергивание'],
+            prices: ['1100 руб.', '1900 руб.', '150 руб.', '3500 руб.', '2200 руб.'],
+            shortPrices: ['1100 р.', '1900 р.', '150 р.', '3500 р.', '2200 р.']
         },
         complex: {
             names: ['FULL стрижка', 'Комплексное бритье', 'VIP обслуживание', 'Детский комплекс', 'Комплекс бороды'],
+            shortNames: ['FULL', 'Complex', 'VIP', 'Детский', 'Борода'],
             descriptions: ['Подбор стрижки и укладки', 'Полное бритье с массажем', 'Полный комплекс', 'Детский вариант, внимательно и аккуратно', 'Комплекс ухода за бородой, массаж и релакс'],
-            prices: ['3000 руб.', '2500 руб.', '4500 руб.', '2000 руб.', '1800 руб.']
+            shortDescriptions: ['Подбор и укладка', 'Полное с массажем', 'Вообще все', 'Игрушки и аккуратно', 'Массаж и релакс'],
+            prices: ['3000 руб.', '2500 руб.', '4500 руб.', '2000 руб.', '1800 руб.'],
+            shortPrices: ['3000 р.', '2500 р.', '4500 р.', '2000 р.', '1800 р.']
         },
         additionally: {
-            names: ['Укладка волос', 'Окрашивание', 'Уход за кожей', 'Массаж головы', 'Уход за кожей'],
+            names: ['Укладка волос', 'Окрашивание', 'Уход за кожей', 'Массаж головы', 'Травянная ванна'],
+            shortNames: ['Укладка', 'Окрашивание', 'Уход за кожей', 'Массаж', 'Травянное'],
             descriptions: ['Укладка для особых случаев', 'Окрашивание волос', 'Процедуры по уходу', 'Расслабляющий массаж с лечебными травами', 'Комплексный уход за лицом и кожей после бритья'],
-            prices: ['500 руб.', '2000 руб.', '1500 руб.', '1000 руб.', '2500 руб.']
+            shortDescriptions: ['Для особых случаев', 'Разноцветные волосы', 'Процедуры по уходу', 'С лечебными травами', 'Уход после бритья'],
+            prices: ['500 руб.', '2000 руб.', '1500 руб.', '1000 руб.', '2500 руб.'],
+            shortPrices: ['500 р.', '2000 р.', '1500 р.', '1000 р.', '2500 р.']
         }
     };
+
+    let isMobile = window.matchMedia('(max-width: 700px)').matches;
 
 // Обновление списка через цикл
     function updateServiceList(serviceType) {
@@ -355,9 +393,17 @@ $(document).ready(function () {
         listSums.empty();
 
         for (let i = 0; i < service.names.length; i++) {
-            listNames.append($('<li></li>').text(service.names[i]));
-            listDiscs.append($('<li></li>').text(service.descriptions[i]));
-            listSums.append($('<li></li>').text(service.prices[i]));
+            if (isMobile) {
+                // Для мобильной версии отображаем сокращенные имена, описания и цены
+                listNames.append($('<li></li>').text(service.shortNames[i]));
+                listDiscs.append($('<li></li>').text(service.shortDescriptions[i]));
+                listSums.append($('<li></li>').text(service.shortPrices[i]));
+            } else {
+                // Для полной версии отображаем полные данные
+                listNames.append($('<li></li>').text(service.names[i]));
+                listDiscs.append($('<li></li>').text(service.descriptions[i]));
+                listSums.append($('<li></li>').text(service.prices[i]));
+            }
         }
     }
 
@@ -369,34 +415,132 @@ $(document).ready(function () {
     });
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //скрипт для взаимодействия с модальным окном Burger Menu
 
-    // пока не применено
-    // код для передачи параметра (названия) в блок ввода заказа и перемещение до этого блока
-    $('.btn-add-to-card').click((e) => {
-        productInput.val($(e.target).parents('.product').find('h6').text());
-        $('.order')[0].scrollIntoView({behavior: "smooth"});
-    })
-    // простая проверка всех блоков ввода и вывод сообщений
-    $('#createOrder').click(function () {
-        let addressInput = $('#address-input');
-        let phoneInput = $('#phone-input');
-        if (!productInput.val()) {
-            alert('Выберите пиццу!');
-            return;
+    // Открытие попапа
+    $('.header__burger').on('click', function (e) {
+        e.preventDefault();
+        $('#popup__burger').addClass('open');
+    });
+    // Закрытие попапа
+    $('.exit').on('click', function (e) {
+        e.preventDefault();
+        $('#popup__burger').removeClass('open');
+    });
+
+// Закрытие попапа при клике за пределами контента
+    $('#popup__burger').on('click', function (event) {
+        if (!$(event.target).closest('.burger__content').length) {
+            $(this).removeClass('open');
         }
-        if (!addressInput.val()) {
-            alert('Введите адрес!');
-            return;
+    });
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // изменение контента в перечне услуг
+
+    function contentChange() {
+        // Проверяем, какое значение ширины экрана
+        let isMobile = window.matchMedia('(max-width: 700px)').matches;
+
+        // Обновляем текст для типов услуг
+        $('#complex').text(isMobile ? 'Комплекс' : 'Комплексные услуги');
+        $('#additionally').text(isMobile ? 'Дополнительно' : 'Дополнительные услуги');
+
+        // Обновляем названия, описания и цены для каждого сервиса
+        for (let serviceKey in servicesData) {
+            let service = servicesData[serviceKey];
+
+            for (let i = 0; i < service.names.length; i++) {
+                // Обновляем названия
+                let nameToSet = isMobile ? service.shortNames[i] : service.names[i];
+                $(`#name_list li:nth-child(${i + 1})`).text(nameToSet);
+
+                // Обновляем описания
+                let descToSet = isMobile ? service.shortDescriptions[i] : service.descriptions[i];
+                $(`#disc_list li:nth-child(${i + 1})`).text(descToSet);
+
+                // Обновляем цены
+                let priceToSet = isMobile ? service.shortPrices[i] : service.prices[i];
+                $(`#sum_list li:nth-child(${i + 1})`).text(priceToSet);
+            }
         }
-        if (!phoneInput.val()) {
-            alert('Введите телефон!');
-            return;
-        }
-        alert('Спасибо за заказ!');
-        productInput.val('');
-        addressInput.val('');
-        phoneInput.val('');
+    }
+
+    // Выполнение функции при загрузке страницы
+    $(window).on('load', contentChange);
+
+// Отслеживание изменения размера окна
+    $(window).on('resize', contentChange);
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // подключение масок
+
+    $('#popup__phone').inputmask("+9(999)-999-99-99");
+    $('#order__phone').inputmask("+9(999)-999-99-99");
+    $('#order__date').inputmask("99.99.9999");
+    $('#order__time').inputmask("99:99");
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // подключение timepicker
+
+    $('.timepicker').timepicker({
+        // timeFormat: 'HH:mm',
+        // interval: 60,
+        // minTime: '01',
+        // maxTime: '24:00',
+        // defaultTime: '12:00',
+        // startTime: '00:00',
+        // dynamic: false,
+        // dropdown: true,
+        // scrollbar: true,
+        zindex: 5,
+    });
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // подключение карты Яндекс
+    // смотри комментарии по картам
+    initMap();
+
+    ymaps3.ready.then(() => {
+        // HTML-элемент.
+        const map = new ymaps3.YMap($('#map'), {
+            location: {
+                center: [37.588144, 55.733842],
+                zoom: 5
+            },
+            mode: 'vector',
+        });
+
+        const layer = new YMapDefaultSchemeLayer();
+        map.addChild(layer);
     });
 
 
+
+    // async function initMap() {
+    //     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
+    //     await ymaps3.ready;
+    //
+    //     const {YMap, YMapDefaultSchemeLayer} = ymaps3;
+    //
+    //     // Иницилиазируем карту
+    //     const map = new YMap(
+    //         // Передаём ссылку на HTMLElement контейнера
+    //         document.getElementById('map'),
+    //
+    //         // Передаём параметры инициализации карты
+    //         {
+    //             location: {
+    //                 // Координаты центра карты
+    //                 center: [37.588144, 55.733842],
+    //
+    //                 // Уровень масштабирования
+    //                 zoom: 10
+    //             }
+    //         }
+    //     );
+    //
+    //     // Добавляем слой для отображения схематической карты
+    //     map.addChild(new YMapDefaultSchemeLayer());
+    // }
 });

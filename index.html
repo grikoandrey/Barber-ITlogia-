@@ -6,10 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Barber Club</title>
-    <!--    <link rel="stylesheet" href="src/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="src/css/animate.min.css">
+    <link rel="stylesheet" href="src/css/datepicker.min.css">
+    <link rel="stylesheet" href="src/css/jquery.timepicker.min.css">
     <link rel="stylesheet/less" type="text/css" href="src/css/style.less">
     <script src="src/js/less.js"></script>
+<!--    <script src="https://api-maps.yandex.ru/v3/?apikey=YANDEX_API_KEY&lang=ru_RU"></script>-->
+<!--    см. комментарии по картам-->
 </head>
 <body>
 
@@ -40,8 +43,21 @@
                 </li>
             </ul>
         </nav>
+
+        <div class="header__burger">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0,0,256,256">
+                <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                   stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                   font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                   style="mix-blend-mode: normal">
+                    <g transform="scale(3.55556,3.55556)">
+                        <path d="M56,48c2.209,0 4,1.791 4,4c0,2.209 -1.791,4 -4,4c-1.202,0 -38.798,0 -40,0c-2.209,0 -4,-1.791 -4,-4c0,-2.209 1.791,-4 4,-4c1.202,0 38.798,0 40,0zM56,32c2.209,0 4,1.791 4,4c0,2.209 -1.791,4 -4,4c-1.202,0 -38.798,0 -40,0c-2.209,0 -4,-1.791 -4,-4c0,-2.209 1.791,-4 4,-4c1.202,0 38.798,0 40,0zM56,16c2.209,0 4,1.791 4,4c0,2.209 -1.791,4 -4,4c-1.202,0 -38.798,0 -40,0c-2.209,0 -4,-1.791 -4,-4c0,-2.209 1.791,-4 4,-4c1.202,0 38.798,0 40,0z"></path>
+                    </g>
+                </g>
+            </svg>
+        </div>
         <div class="call">
-            <a href="tel:+79128169396" class="call__number">+7 912 816-93-96</a>
+            <a href="tel:+79128169396" class="call__number first">+7 912 816-93-96</a>
             <button class="call__btn">
                 <img class="call__btn-logo" src="images/call_logo.png" alt="red handset">
                 <span class="call__btn-text">Заказать звонок</span>
@@ -126,29 +142,30 @@
                 </nav>
                 <div class="services__price">
                     <ul class="services__col name" id="name_list">
-                        <li>Стрижка мужская</li>
-                        <li>Стрижка удлиненная</li>
-                        <li>Стрижка машинкой</li>
-                        <li>Стрижка детская</li>
-                        <li>Стрижка бороды</li>
+                        <li id="name_list1">Стрижка мужская</li>
+                        <li id="name_list2">Стрижка удлиненная</li>
+                        <li id="name_list3">Стрижка машинкой</li>
+                        <li id="name_list4">Стрижка детская</li>
+                        <li id="name_list5">Стрижка бороды</li>
+
                     </ul>
                     <ul class="services__col disc" id="disc_list">
-                        <li>Подбор стрижки, 2 мытья, укладка</li>
-                        <li>Подбор стрижки, 2 мытья, укладка</li>
-                        <li>Без ножниц</li>
-                        <li>От 4 до 14 лет включительно,<br>
+                        <li id="disc_list1">Подбор стрижки, 2 мытья, укладка</li>
+                        <li id="disc_list2">Подбор стрижки, 2 мытья, укладка</li>
+                        <li id="disc_list3">Без ножниц</li>
+                        <li id="disc_list4">От 4 до 14 лет включительно,<br>
                             не удлиненная
                         </li>
-                        <li>С распариванием и окантовкой<br>
+                        <li id="disc_list5">С распариванием и окантовкой<br>
                             бритвой шаветт
                         </li>
                     </ul>
                     <ul class="services__col sum" id="sum_list">
-                        <li>1400 руб.</li>
-                        <li>2100 руб.</li>
-                        <li>950 руб.</li>
-                        <li>1100 руб.</li>
-                        <li>950 руб.</li>
+                        <li id="sum_list1">1400 руб.</li>
+                        <li id="sum_list2">2100 руб.</li>
+                        <li id="sum_list3">950 руб.</li>
+                        <li id="sum_list4">1100 руб.</li>
+                        <li id="sum_list5">950 руб.</li>
                     </ul>
                 </div>
             </div>
@@ -319,16 +336,9 @@
                     </button>
                 </div>
             </div>
-            <div class="wow animate__animated animate__bounceIn contacts__map">
-                <div style="position:relative;overflow:hidden;"><a
-                        href="https://yandex.eu/maps/org/barber_club/151943441107/?utm_medium=mapframe&utm_source=maps"
-                        style="color:#eee;font-size:12px;position:absolute;top:0;">Школа барберов Barber Club</a><a
-                        href="https://yandex.eu/maps/213/moscow/category/training_of_masters_for_beauty_salons/184106214/?utm_medium=mapframe&utm_source=maps"
-                        style="color:#eee;font-size:12px;position:absolute;top:14px;">Обучение мастеров для салонов
-                    красоты в Москве</a>
-                    <iframe src="https://yandex.com/map-widget/v1/?ll=37.602685%2C55.781922&mode=search&oid=151943441107&ol=biz&sctx=ZAAAAAgBEAAaKAoSCQiRDDm29kJAEZq1FJD24UtAEhIJn5RJDW0A%2Fz8RVgvsMZHS5T8iBgABAgMEBSgKOABA3K0HSAFqAnJ1nQHNzMw9oAEAqAEAvQGxpSsXwgEG09WjhLYEggILYmFyYmVyIGNsdWKKAgCSAgCaAgxkZXNrdG9wLW1hcHOqAkw3MjQ1NTc0OTQyMSwxODg3NzU3NzgxNDYsMjMwNjYwODQzNDUxLDE3Njk3MjM0NjkwNywyNDU2NTQ0NDM0MjYsMTE1MDc3ODQ1ODUx&sll=37.599225%2C55.781922&sspn=0.021707%2C0.007636&text=barber%20club&z=16.25"
-                            width="100%" height="538" style="position:relative;"></iframe>
-                </div>
+            <div class="wow animate__animated animate__bounceIn contacts__map" id="map">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A89976fa4119de298c59975509ab5803c826c8090aeb2710fe2d1dcc47931f37f&amp;source=constructor"
+                        width="100%" height="100%" frameborder="0"></iframe>
             </div>
         </div>
     </div>
@@ -337,7 +347,6 @@
 <footer class="footer">© Все права защищены, 2024</footer>
 
 <div id="popup__call" class="popup__call">
-    <!--    <a href="#" class="popup__area"></a>-->
     <div class="popup__body">
         <div class="popup__content">
             <div class="popup__image">
@@ -388,6 +397,37 @@
     </div>
 </div>
 
+<div id="popup__burger" class="popup__burger">
+    <div class="burger__body">
+        <div class="burger__content">
+            <div class="burger__field">
+                <a href="#" class="exit">
+                    <img src="images/popup-order/exit.png" alt="cross for exit">
+                </a>
+                <nav class="burger__nav" id="burger__nav">
+                    <ul class="header__menu">
+                        <li>
+                            <a class="header__menu-item" href="#about">О нас</a>
+                        </li>
+                        <li>
+                            <a class="header__menu-item" href="#services">Услуги</a>
+                        </li>
+                        <li>
+                            <a class="header__menu-item" href="#discount">Акции</a>
+                        </li>
+                        <li>
+                            <a class="header__menu-item" href="#masters">Наши мастера</a>
+                        </li>
+                        <li>
+                            <a class="header__menu-item" href="#contacts">Контакты</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="popup__order" class="popup__order">
     <div class="order__body">
         <div class="order__content">
@@ -431,24 +471,25 @@
                         <label for="order__master"></label>
                         <select name="master" class="call__input popup__phone error" id="order__master">
                             <option value="">--Выберите мастера--</option>
-                            <option value="alex">Алексей</option>
-                            <option value="roma">Роман</option>
-                            <option value="epif">Епифан</option>
-                            <option value="john">Джон</option>
-                            <option value="marco">Марко</option>
-                            <option value="vova">Вова</option>
+                            <option value="alex">Барбер Алексей</option>
+                            <option value="roma">Барбер Роман</option>
+                            <option value="epif">Барбер Епифан</option>
+                            <option value="john">Барбер Джон</option>
+                            <option value="marco">Барбер Марко</option>
+                            <option value="vova">Барбер Вова</option>
                         </select>
                         <div class="error-input">Выберите мастера!</div>
                     </div>
                     <div class="order__form-item">
                         <label for="order__date"></label>
-                        <input type="text" class="call__input popup__name error" id="order__date"
+                        <input type="text" class="call__input popup__name error datepicker-here" id="order__date"
+                               autocomplete="off"
                                placeholder="Введите дату">
                         <div class="error-input">Введите дату!</div>
                     </div>
                     <div class="order__form-item">
                         <label for="order__time"></label>
-                        <input type="text" class="call__input popup__phone error" id="order__time"
+                        <input type="text" class="call__input popup__phone error timepicker" id="order__time" autocomplete="off"
                                placeholder="Введите время">
                         <div class="error-input">Введите время!</div>
                     </div>
@@ -464,8 +505,11 @@
 <script src="src/js/jquery-3.7.1.min.js"></script>
 <script src="src/js/slick.min.js"></script>
 <script src="src/js/wow.min.js"></script>
+<script src="src/js/datepicker.min.js"></script>
 <script src="src/js/jquery.inputmask.min.js"></script>
+<script src="src/js/jquery.timepicker.min.js"></script>
 <!--<script src="src/js/parallax.min.js"></script>-->
+<!--специально оставил, чтобы использовать на будущее-->
 <script src="src/js/script.js"></script>
 </body>
 </html>

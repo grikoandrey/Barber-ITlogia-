@@ -1,0 +1,460 @@
+@import 'mixins';
+
+@media screen and (max-width: 1274px) {
+  .popup__order {
+
+    .order__body {
+      padding: 30px 150px;
+
+      .order__content {
+
+        .popup__man {
+          top: 25%;
+          left: -10%;
+          transform: unset;
+          z-index: unset;
+
+          img {
+            max-width: 70%;
+          }
+        }
+
+        .success-popup__man {
+          display: none;
+        }
+
+        .blades {
+          img {
+            max-width: 70%;
+          }
+        }
+
+        .order__field {
+          padding: 50px 30px 30px 200px;
+
+          .order__title {
+            .cambria-mix(30px, @white);
+          }
+
+          .order__text {
+            .gilroy-mix(15px, 400, @white);
+          }
+
+          .order__form {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            column-gap: 30px;
+          }
+        }
+        .success-form-style {
+          min-width: unset;
+          min-height: unset;
+          padding: 60px;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1240px) {
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .header {
+    .container {
+      .pad-rl;
+    }
+  }
+
+  .barb_club {
+    .container {
+      .pad-rl;
+    }
+  }
+
+  .about {
+    .container {
+      .pad-rl;
+    }
+  }
+
+  .services {
+    .container {
+      .pad-rl;
+
+      .services__info {
+        text-align: center;
+        min-width: 575px;
+
+        .services__table {
+          max-width: 570px;
+
+          .services__price {
+            grid-template-columns: 1.3fr 2.1fr 1fr;
+
+            .services__col {
+
+              &.name {
+                padding-right: 0;
+              }
+
+              &.disc {
+                padding-left: 15px;
+                padding-right: 15px;
+              }
+
+              &.sum {
+                padding-left: 15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .masters {
+    .container {
+      .pad-rl;
+    }
+  }
+
+  .discount {
+    .container {
+      .pad-rl;
+    }
+  }
+
+  .instagram {
+    .container {
+      padding: 92px 0 93px 0;
+      .pad-rl;
+
+      .inst__info {
+        .inst__title {
+          max-width: 335px;
+        }
+      }
+    }
+  }
+
+  .contacts {
+    .container {
+      .pad-rl;
+    }
+  }
+
+  .footer {
+    .container {
+      .pad-rl;
+    }
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .barb_club {
+    .barb__back {
+      &.first {
+        left: 10%;
+        top: 70%;
+        max-width: 70%;
+      }
+
+      &.second {
+        right: 10%;
+        top: 30%;
+        max-width: 45%;
+      }
+    }
+
+    .barb__container {
+      .barb__info {
+        padding-top: 35px;
+
+        .barb__title {
+          font-size: 45px;
+        }
+
+        .barb__text {
+          font-size: 16px;
+        }
+
+        .barb__action {
+          .barb__button {
+            padding: 20px 60px;
+          }
+        }
+      }
+
+      .barb__image {
+        right: 40px;
+      }
+    }
+  }
+
+  .call__number.first {
+    display: none;
+  }
+
+  .services {
+    .services__container {
+      .services__info {
+        .services__action {
+          .services__button {
+            padding: 20px 60px;
+          }
+        }
+      }
+    }
+  }
+
+  .discount {
+    .discount__container {
+      .discount__info {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .header {
+    padding: 20px 0;
+
+    .container {
+      .header__nav {
+        .header__menu {
+          gap: 20px;
+        }
+      }
+    }
+  }
+
+  .barb_club {
+    .barb__container {
+      padding: 150px 20px 53px 20px;
+      .barb__info {
+        padding-top: 0;
+        max-width: 365px;
+
+        .barb__title {
+          font-size: 40px;
+          width: 365px;
+          margin-bottom: 30px;
+        }
+
+        .barb__text {
+          margin-bottom: 30px;
+        }
+
+        .barb__action {
+          .barb__button {
+            padding: 20px 60px;
+          }
+        }
+      }
+
+      .barb__image {
+        right: 0;
+      }
+    }
+  }
+
+  .about {
+    .about__container {
+      padding: 60px 20px 90px 20px;
+      gap: 40px;
+
+      .about__info {
+        .about__title {
+          font-size: 36px;
+          margin-bottom: 20px;
+        }
+
+        .about__text {
+          &.part1 {
+            margin-bottom: 20px;
+          }
+        }
+      }
+
+      .about__image {
+        top: 20%;
+
+        .about__blade {
+          transform: translate(40%, -30%);
+        }
+      }
+    }
+  }
+
+  .services {
+    .services__container {
+      .flx-btw;
+      padding: 60px 20px;
+      justify-content: space-around;
+
+      .services__info {
+        min-width: unset;
+        .services__title {
+          font-size: 36px;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        .services__table {
+          margin-bottom: 40px;
+
+          .services__price {
+            margin-top: 50px;
+
+            .services__col {
+              gap: 40px;
+
+              &.name {
+                padding-right: 0;
+              }
+
+              &.disc {
+                padding-left: 10px;
+                padding-right: 10px;
+              }
+
+              &.sum {
+                padding-left: 25px;
+              }
+            }
+          }
+        }
+
+        .services__action {
+          .services__button {
+            padding: 20px 60px;
+          }
+        }
+      }
+
+      .services__image {
+        display: none;
+      }
+    }
+  }
+
+  .discount {
+    .discount__container {
+      padding: 60px 20px;
+
+      .discount__info {
+        padding-top: 0;
+        text-align: start;
+        min-width: unset;
+        width: 400px;
+
+        .discount__title {
+          font-size: 36px;
+          margin-bottom: 20px;
+        }
+
+        .discount__num {
+          font-size: 50px;
+        }
+
+        .discount__text {
+          font-size: 16px;
+        }
+
+        .discount__action {
+          .discount__button {
+            padding: 20px 54px;
+          }
+        }
+      }
+
+      .discount__image {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        max-width: 35%;
+      }
+    }
+  }
+
+  .instagram {
+    .inst__container {
+      padding: 80px 20px;
+
+      .inst__info {
+        margin-bottom: 50px;
+
+        .inst__title {
+          font-size: 36px;
+        }
+
+        .inst__action {
+          gap: 15px;
+
+          .inst__button {
+            padding: 10px 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .contacts {
+    .contacts__container {
+
+      .contacts__title {
+        font-size: 36px;
+        margin-bottom: 30px;
+      }
+
+      .contacts__bloc {
+        .contacts__info {
+          gap: 20px;
+          padding: 20px;
+
+          .contacts__address {
+            gap: 10px;
+
+            .title {
+              font-size: 12px;
+            }
+
+            .name {
+              font-size: 16px;
+            }
+          }
+
+          .contacts__time {
+            gap: 10px;
+            margin-top: 0;
+
+            .title {
+              font-size: 12px;
+            }
+          }
+
+          .contacts__social {
+            gap: 10px;
+          }
+
+          .contacts__mail {
+            font-size: 16px;
+          }
+
+          .call {
+            .call__btn {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
